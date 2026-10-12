@@ -1,0 +1,8 @@
+{
+  "provider": "openai",
+  "model": null,
+  "base_url": "https://api.openai.com/v1",
+  "api_key_env": "OPENAI_API_KEY",
+  "temperature": 1.0,
+  "supports_n": true
+}

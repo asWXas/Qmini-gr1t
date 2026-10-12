@@ -1,0 +1,12 @@
+{
+  "provider": "openai_compatible",
+  "model": "deepseek-flash",
+  "base_url": "https://api.deepseek.com",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "temperature": null,
+  "supports_n": false,
+  "stream": true,
+  "timeout_seconds": 300,
+  "max_retries": 0
+}
+

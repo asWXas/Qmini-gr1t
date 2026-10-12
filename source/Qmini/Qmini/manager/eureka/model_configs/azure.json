@@ -1,0 +1,9 @@
+{
+  "provider": "azure",
+  "model": null,
+  "base_url": null,
+  "api_key_env": "AZURE_OPENAI_API_KEY",
+  "api_version": null,
+  "temperature": 1.0,
+  "supports_n": true
+}

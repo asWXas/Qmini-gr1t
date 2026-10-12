@@ -1,0 +1,28 @@
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+.env
+.env.*
+.python-version
+
+# Local API credential helper
+source/Qmini/Qmini/manager/eureka/model_configs/api.py
+
+# Isaac Lab training artifacts
+logs/
+outputs/
+
+# Editor and operating-system files
+.vscode/.python.env
+.idea/
+.DS_Store

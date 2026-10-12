@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<robot name="umv_from_blender_joints_inertial">
+
+  <!--
+    新 base_link 原点 = 原 base_link 的 COM
+
+    平移量 d:
+      x =  0.049683
+      y = -0.010105
+      z =  0.351809
+
+    坐标转换规律:
+      p_new = p_old - d
+  -->
+
+  <!-- ==================== Links ==================== -->
+
+  <link name="base_link">
+
+    <!-- base_link 原点现在就是 COM -->
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="5.727"/>
+      <inertia
+        ixx="0.08571229"
+        ixy="0.00002833"
+        ixz="-0.06603050"
+        iyy="0.20369222"
+        iyz="0.00007180"
+        izz="0.14994024"/>
+    </inertial>
+
+    <!--
+      原来 mesh origin = 0 0 0
+
+      新坐标:
+      (0,0,0) - (0.049683,-0.010105,0.351809)
+
+      =
+      (-0.049683, 0.010105, -0.351809)
+    -->
+    <visual>
+      <origin
+        xyz="-0.049683 0.010105 -0.351809"
+        rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_current/bike.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin
+        xyz="-0.049683 0.010105 -0.351809"
+        rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/bike.stl"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+
+  <link name="rear_wheel">
+    <inertial>
+      <origin xyz="-0.000145 0.000118 0.000118" rpy="0 0 0"/>
+      <mass value="1.361"/>
+      <inertia
+        ixx="0.00798997"
+        ixy="0.00000068"
+        ixz="-0.00000571"
+        iyy="0.01536116"
+        iyz="-0.00000289"
+        izz="0.00799240"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_rounded_local/rearwheel.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/rearwheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="front_fork">
+    <inertial>
+      <origin xyz="0.054895 -0.001011 -0.122895" rpy="0 0 0"/>
+      <mass value="0.200"/>
+      <inertia
+        ixx="0.00085070"
+        ixy="-0.00000024"
+        ixz="0.00029890"
+        iyy="0.00084991"
+        iyz="-0.00000105"
+        izz="0.00035487"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/fork.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/fork.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="front_wheel">
+    <inertial>
+      <origin xyz="-0.000145 0.000118 0.000118" rpy="0 0 0"/>
+      <mass value="1.161"/>
+      <inertia
+        ixx="0.00681583"
+        ixy="0.00000058"
+        ixz="-0.00000487"
+        iyy="0.01310383"
+        iyz="-0.00000246"
+        izz="0.00681791"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_rounded_local/frontwheel.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/frontwheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="neck">
+    <inertial>
+      <origin xyz="-0.231803 -0.001083 0.033241" rpy="0 0 0"/>
+      <mass value="1.635"/>
+      <inertia
+        ixx="0.00359886"
+        ixy="0.00001626"
+        ixz="0.00462740"
+        iyy="0.03225692"
+        iyz="0.00000039"
+        izz="0.03332124"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/neck.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/neck.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="head">
+    <inertial>
+      <origin xyz="0.231915 -0.000997 0.114026" rpy="0 0 0"/>
+      <mass value="13.416"/>
+      <inertia
+        ixx="0.35903587"
+        ixy="0.00000954"
+        ixz="-0.01740144"
+        iyy="0.55880803"
+        iyz="0.00012824"
+        izz="0.70805404"/>
+    </inertial>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/head.stl"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/head.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+
+  <!-- ==================== Joints ==================== -->
+
+
+  <!--
+    原:
+      -0.213235 -0.009500 0.173071
+
+    减去:
+       0.049683 -0.010105 0.351809
+
+    新:
+      -0.262918  0.000605 -0.178738
+  -->
+  <joint name="q_w" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_wheel"/>
+
+    <origin
+      xyz="-0.262918 0.000605 -0.178738"
+      rpy="0 0 0"/>
+
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+
+  <!--
+    原:
+      0.313426 -0.009165 0.384802
+
+    新:
+      0.263743 0.000940 0.032993
+  -->
+  <joint name="q_s" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_fork"/>
+
+    <origin
+      xyz="0.263743 0.000940 0.032993"
+      rpy="0 0 0"/>
+
+    <axis xyz="-0.390731 0 0.920505"/>
+
+    <limit
+      lower="-1.5708"
+      upper="1.5708"
+      effort="6.25"
+      velocity="160"/>
+  </joint>
+
+
+  <!--
+    front_wheel 是 front_fork 的 child，
+    base_link frame 改变不会影响这个相对坐标。
+  -->
+  <joint name="q_frontwheel" type="continuous">
+    <parent link="front_fork"/>
+    <child link="front_wheel"/>
+
+    <origin
+      xyz="0.088184 0.000165 -0.202147"
+      rpy="0 0 0"/>
+
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+
+  <!--
+    原:
+      0.185453 -0.009000 0.578236
+
+    新:
+      0.135770 0.001105 0.226427
+  -->
+  <joint name="q_n" type="revolute">
+    <parent link="base_link"/>
+    <child link="neck"/>
+
+    <origin
+      xyz="0.135770 0.001105 0.226427"
+      rpy="0 0 0"/>
+
+    <axis xyz="0 -1 0"/>
+
+    <limit
+      lower="-1.5708"
+      upper="0.60"
+      effort="144"
+      velocity="29.4"/>
+  </joint>
+
+
+  <!--
+    q_h 的 parent 是 neck，
+    所以不受 base_link frame 平移影响。
+  -->
+  <joint name="q_h" type="revolute">
+    <parent link="neck"/>
+    <child link="head"/>
+
+    <origin
+      xyz="-0.455453 0 0.131764"
+      rpy="0 0 0"/>
+
+    <axis xyz="0 -1 0"/>
+
+    <limit
+      lower="-0.0908"
+      upper="1.5708"
+      effort="218"
+      velocity="19.4"/>
+  </joint>
+
+</robot>

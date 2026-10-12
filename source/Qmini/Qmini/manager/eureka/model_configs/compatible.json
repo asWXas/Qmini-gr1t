@@ -1,0 +1,8 @@
+{
+  "provider": "openai_compatible",
+  "model": null,
+  "base_url": null,
+  "api_key_env": "EUREKA_API_KEY",
+  "temperature": null,
+  "supports_n": false
+}

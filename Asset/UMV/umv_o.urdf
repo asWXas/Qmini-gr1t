@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<robot name="umv_from_blender_joints_inertial">
+
+  <!-- ==================== Links ==================== -->
+  <link name="base_link">
+    <inertial>
+      <!-- x -> -x, y -> -y, z -> z -->
+      <origin xyz="0.049683 -0.010105 0.351809" rpy="0 0 0"/>
+      <mass value="5.727"/>
+      <!-- ixz -> -ixz, iyz -> -iyz -->
+      <inertia ixx="0.08571229" ixy="0.00002833"  ixz="-0.06603050" 
+               iyy="0.20369222" iyz="0.00007180"  izz="0.14994024"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_current/bike.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/bike.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="rear_wheel">
+    <inertial>
+      <origin xyz="-0.000145 0.000118 0.000118" rpy="0 0 0"/>
+      <mass value="1.361"/>
+      <inertia ixx="0.00798997" ixy="0.00000068" ixz="-0.00000571" 
+               iyy="0.01536116" iyz="-0.00000289" izz="0.00799240"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_rounded_local/rearwheel.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/rearwheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="front_fork">
+    <inertial>
+      <origin xyz="0.054895 -0.001011 -0.122895" rpy="0 0 0"/>
+      <mass value="0.200"/>
+      <inertia ixx="0.00085070" ixy="-0.00000024" ixz="0.00029890" 
+               iyy="0.00084991" iyz="-0.00000105" izz="0.00035487"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/fork.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/fork.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="front_wheel">
+    <inertial>
+      <origin xyz="-0.000145 0.000118 0.000118" rpy="0 0 0"/>
+      <mass value="1.161"/>
+      <inertia ixx="0.00681583" ixy="0.00000058" ixz="-0.00000487" 
+               iyy="0.01310383" iyz="-0.00000246" izz="0.00681791"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_rounded_local/frontwheel.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/frontwheel.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="neck">
+    <inertial>
+      <origin xyz="-0.231803 -0.001083 0.033241" rpy="0 0 0"/>
+      <mass value="1.635"/>
+      <inertia ixx="0.00359886" ixy="0.00001626"  ixz="0.00462740" 
+               iyy="0.03225692" iyz="0.00000039"  izz="0.03332124"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/neck.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/neck.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="head">
+    <inertial>
+      <origin xyz="0.231915 -0.000997 0.114026" rpy="0 0 0"/>
+      <mass value="13.416"/>
+      <inertia ixx="0.35903587" ixy="0.00000954"  ixz="-0.01740144" 
+               iyy="0.55880803" iyz="0.00012824"  izz="0.70805404"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="meshes_blender_joint_local/head.stl"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 3.14159265"/>
+      <geometry>
+        <mesh filename="collision_convex/head.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ==================== Joints ==================== -->
+  <!-- 后轮轴：原 origin (0.213235, 0.0095, 0.173071)，原 axis (0, 1, 0) -->
+  <joint name="q_w" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_wheel"/>
+    <origin xyz="-0.213235 -0.009500 0.173071" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <!-- 前叉转向轴：原 origin (-0.313426, 0.009165, 0.384802)，原 axis (0.390731, 0, 0.920505) -->
+  <joint name="q_s" type="revolute">
+    <parent link="base_link"/>
+    <child link="front_fork"/>
+    <origin xyz="0.313426 -0.009165 0.384802" rpy="0 0 0"/>
+    <axis xyz="-0.390731 0 0.920505"/>
+    <limit lower="-1.5708" upper="1.5708" effort="6.25" velocity="160"/>
+  </joint>
+
+  <!-- 前轮轴：原 origin (-0.088184, -0.000165, -0.202147)，原 axis (0, 1, 0) -->
+  <joint name="q_frontwheel" type="continuous">
+    <parent link="front_fork"/>
+    <child link="front_wheel"/>
+    <origin xyz="0.088184 0.000165 -0.202147" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <!-- 颈部关节：原 origin (-0.185453, 0.009, 0.578236)，原 axis (0, 1, 0) -->
+  <joint name="q_n" type="revolute">
+    <parent link="base_link"/>
+    <child link="neck"/>
+    <origin xyz="0.185453 -0.009000 0.578236" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5708" upper="0.60" effort="144" velocity="29.4"/>
+  </joint>
+
+  <!-- 头部关节：原 origin (0.455453, 0, 0.131764)，原 axis (0, 1, 0) -->
+  <joint name="q_h" type="revolute">
+    <parent link="neck"/>
+    <child link="head"/>
+    <origin xyz="-0.455453 0 0.131764" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-0.0908" upper="1.5708" effort="218" velocity="19.4"/>
+  </joint>
+
+</robot>
